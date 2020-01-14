@@ -1,0 +1,37 @@
+import pyperclip
+def base_pair_find(base):
+    base = base.upper()
+    if base == 'A':
+        return 'T'
+    elif base == 'T':
+        return 'A'
+    elif base == 'C':
+        return 'G'
+    elif base == 'G':
+        return 'C'
+    else:
+        raise ValueError()
+
+def reverse_complement(sequence):
+    new = []
+    #sequence = sequence.lower()
+    for i in sequence:
+        try:
+            new = [base_pair_find(i)] + new
+        except:
+            raise ValueError("sequence error - invalid bases entered")
+    return "".join(new)
+
+user_sequence = pyperclip.paste()
+
+print('OneClick RevCom. Author: Olivor Holman 2019')
+
+print('sequence found from clipboard: \n', user_sequence)
+
+user_sequence = reverse_complement(user_sequence)
+
+print("reverse complement: ", "\n", user_sequence, "\n reverse complement has been copied to clipboard")
+
+pyperclip.copy(user_sequence)
+
+input("\n press enter to quit")
